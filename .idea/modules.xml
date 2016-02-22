@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog.iml" filepath="$PROJECT_DIR$/MiniBlog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Core/MiniBlog-Core.iml" filepath="$PROJECT_DIR$/MiniBlog-Core/MiniBlog-Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Model/MiniBlog-Model.iml" filepath="$PROJECT_DIR$/MiniBlog-Model/MiniBlog-Model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Service/MiniBlog-Service.iml" filepath="$PROJECT_DIR$/MiniBlog-Service/MiniBlog-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Utils/MiniBlog-Utils.iml" filepath="$PROJECT_DIR$/MiniBlog-Utils/MiniBlog-Utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Webapps/MiniBlog-Webapps.iml" filepath="$PROJECT_DIR$/MiniBlog-Webapps/MiniBlog-Webapps.iml" />
+    </modules>
+  </component>
+</project>
