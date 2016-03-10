@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="colin.miniblog.core"/>
+    <!--配置属性文件-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="classpath:jdbc.properties"></bean>
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="connectionProperties" value="${jdbc.driverClassName}"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${jdbc.initialSize}" />
+        <property name="minIdle" value="${jdbc.maxIdle}" />
+        <property name="maxActive" value="${jdbc.maxActive}" />
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="${jdbc.maxWait}" />
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" />
+
+        <property name="validationQuery" value="SELECT 'x'" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${jdbc.maxPoolPreparedStatementPerConnectionSize}" />
+
+        <!-- 配置监控统计拦截的filters，去掉后监控界面sql无法统计 -->
+        <property name="filters" value="stat" />
+    </bean>
+    <!--配置事务-->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>
+    <!--配置beetlSql-->
+    <bean id="sqlManager" class="org.beetl.sql.ext.spring.SpringBeetlSql">
+        <property name="cs" >
+            <bean  class="org.beetl.sql.ext.spring.SpringConnectionSource">
+                <property name="master" ref="dataSource"></property>
+            </bean>
+        </property>
+        <property name="dbStyle">
+            <bean class="org.beetl.sql.core.db.MySqlStyle"> </bean>
+        </property>
+        <property name="sqlLoader">
+            <bean class="org.beetl.sql.core.ClasspathLoader">
+                <property name="sqlRoot" value="/sql"></property>
+            </bean>
+        </property>
+        <property name="nc">
+            <bean class="org.beetl.sql.core.UnderlinedNameConversion">
+            </bean>
+        </property>
+        <property name="interceptors">
+            <list>
+                <bean class="org.beetl.sql.ext.DebugInterceptor"></bean>
+            </list>
+        </property>
+    </bean>
+</beans>

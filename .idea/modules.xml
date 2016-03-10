@@ -7,7 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/MiniBlog-Model/MiniBlog-Model.iml" filepath="$PROJECT_DIR$/MiniBlog-Model/MiniBlog-Model.iml" />
       <module fileurl="file://$PROJECT_DIR$/MiniBlog-Service/MiniBlog-Service.iml" filepath="$PROJECT_DIR$/MiniBlog-Service/MiniBlog-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/MiniBlog-Utils/MiniBlog-Utils.iml" filepath="$PROJECT_DIR$/MiniBlog-Utils/MiniBlog-Utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Webapps/MiniBlog-Webapps.iml" filepath="$PROJECT_DIR$/MiniBlog-Webapps/MiniBlog-Webapps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Web/MiniBlog-Web.iml" filepath="$PROJECT_DIR$/MiniBlog-Web/MiniBlog-Web.iml" />
     </modules>
   </component>
 </project>

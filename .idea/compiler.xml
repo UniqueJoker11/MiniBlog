@@ -26,6 +26,7 @@
         <module name="MiniBlog-Model" />
         <module name="MiniBlog-Service" />
         <module name="MiniBlog-Utils" />
+        <module name="MiniBlog-Web" />
         <module name="MiniBlog-Webapps" />
       </profile>
     </annotationProcessing>
@@ -34,6 +35,7 @@
       <module name="MiniBlog-Model" target="1.7" />
       <module name="MiniBlog-Service" target="1.7" />
       <module name="MiniBlog-Utils" target="1.7" />
+      <module name="MiniBlog-Web" target="1.7" />
       <module name="MiniBlog-Webapps" target="1.7" />
     </bytecodeTargetLevel>
   </component>

@@ -11,5 +11,12 @@
 
     <artifactId>blog-service</artifactId>
 
-
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>colin.web.blog</groupId>
+            <artifactId>blog-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

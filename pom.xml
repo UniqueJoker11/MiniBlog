@@ -6,9 +6,11 @@
 
     <groupId>colin.web.blog</groupId>
     <artifactId>blog</artifactId>
+    <!--om表示它是一个被继承的模块-->
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.2.1.RELEASE</spring.version>
         <jackson-core.version>2.4.4</jackson-core.version>
         <jackson-databind.version>2.4.4</jackson-databind.version>
@@ -35,7 +37,7 @@
         <module>MiniBlog-Service</module>
         <module>MiniBlog-Model</module>
         <module>MiniBlog-Utils</module>
-        <module>MiniBlog-Webapps</module>
+        <module>MiniBlog-Web</module>
     </modules>
     <build>
         <pluginManagement>
@@ -76,12 +78,12 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
+            <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
+            <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
@@ -119,17 +121,17 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.4.4</version>
+            <version>${jackson-core.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.4.4</version>
+            <version>${jackson-core.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.4.4</version>
+            <version>${jackson-core.version}</version>
         </dependency>
         <!--commons组件 -->
         <dependency>
@@ -248,7 +250,7 @@
         <dependency>
             <groupId>com.ibeetl</groupId>
             <artifactId>beetlsql</artifactId>
-            <version>1.4.0</version>
+            <version>2.1</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -261,6 +263,12 @@
             <artifactId>jsp-api</artifactId>
             <version>2.1</version>
             <scope>provided</scope>
+        </dependency>
+        <!--json组件-->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20151123</version>
         </dependency>
         <!--搜索查询组件-->
         <!-- <dependency>
@@ -283,12 +291,6 @@
              <artifactId>lucene-sandbox</artifactId>
              <version>5.3.1</version>
          </dependency>-->
-        <!--json组件-->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20151123</version>
-        </dependency>
     </dependencies>
 
 </project>
