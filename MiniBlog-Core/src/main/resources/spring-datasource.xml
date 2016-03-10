@@ -46,9 +46,7 @@
     <!--配置beetlSql-->
     <bean id="sqlManager" class="org.beetl.sql.ext.spring.SpringBeetlSql">
         <property name="cs" >
-            <bean  class="org.beetl.sql.ext.spring.SpringConnectionSource">
-                <property name="master" ref="dataSource"></property>
-            </bean>
+            <bean  class="org.beetl.sql.ext.spring.SpringConnectionSource" p:masterSource-ref="dataSource"/>
         </property>
         <property name="dbStyle">
             <bean class="org.beetl.sql.core.db.MySqlStyle"> </bean>
