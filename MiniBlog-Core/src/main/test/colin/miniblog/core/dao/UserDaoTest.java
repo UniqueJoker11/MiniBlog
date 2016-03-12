@@ -1,6 +1,11 @@
 package colin.miniblog.core.dao;
 
+import colin.miniblog.core.pojo.UserInfo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.codec.digest.Md5Crypt;
+import org.beetl.ext.fn.Json;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,7 +37,7 @@ public class UserDaoTest {
     @Before
     public void initUser(){
         params.put("username","colin");
-        params.put("pwd", Md5Crypt.apr1Crypt("colin123456","hello"));
+        params.put("pwd", DigestUtils.md5Hex("1234"));
         params.put("sign","我的签名");
         params.put("role",1);
         params.put("daren_tree","hello");
@@ -44,9 +50,18 @@ public class UserDaoTest {
         params.put("cur_area",10);
         params.put("mtime", Timestamp.valueOf("2016-03-12 12:23:23"));
     }
-    @Test
+   /* @Test
     public void testInsertUser(){
-        int result=userDao.insertUser(params);
-        System.out.println("结果是"+result);
+
+    }*/
+    @Test
+    public void testValidateUserInfo(){
+      List<UserInfo> result= userDao.validateUserInfo(params);
+        ObjectMapper om=new ObjectMapper();
+        try {
+            System.out.println(om.writeValueAsString(result));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 }

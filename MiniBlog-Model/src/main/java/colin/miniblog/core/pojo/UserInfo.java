@@ -3,6 +3,7 @@ package colin.miniblog.core.pojo;
 import org.beetl.sql.core.annotatoin.AutoID;
 import org.beetl.sql.core.annotatoin.Table;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -14,137 +15,200 @@ import java.sql.Timestamp;
 @Table(name = "user_info")
 public class UserInfo {
 
-  @AutoID
-  private int id;
-  private String username;
-  private String pwd;
-  private String nickname;
-  private String sign;
-  /**
-   * 头像
-   */
-  private String face;
-  /**
-   * 金币
-   */
-  private int coin;
-  private int sex;
-  private int cur_area;
-  private int email_validate;
-  private int role;
-  private int is_del;
-  private int daren_tree;
-  private Timestamp mtime;
+    @AutoID
+    private int id;
+    private String username;
+    private String pwd;
+    /**
+     * 昵称
+     */
+    private String nickname;
+    /**
+     * 用户签名
+     */
+    private String sign;
+    /**
+     * 头像
+     */
+    private String face;
+    /**
+     * 金币
+     */
+    private int coin;
+    /**
+     * 性別
+     */
+    private int sex;
+    /**
+     * 当前区域
+     */
+    private int cur_area;
+    /**
+     * 用户邮箱
+     */
+    private String email;
+    /**
+     * 邮箱是否被验证。0：未被验证，1：被验证
+     */
+    private int email_validate;
+    /**
+     * 用户角色
+     */
+    private int role;
+    /**
+     * 是否被删除。0：为被删除，1：被删除
+     */
+    private int is_del;
+    /**
+     * 达人树，用户活跃度，每天登陆一次加一。连续登陆2天，加5
+     */
+    private int daren_tree;
+    /**
+     * 注册时间
+     */
+    private Timestamp mtime;
+    /**
+     * 最近一次修改信息时间
+     */
+    private Timestamp modified;
+    /**
+     * 最近一次登陆时间
+     */
+    private Date last_login_time;
 
-  public int getId() {
-    return id;
-  }
+    public String getEmail() {
+        return email;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-  public String getUsername() {
-    return username;
-  }
+    public Date getLast_login_time() {
+        return last_login_time;
+    }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    public void setLast_login_time(Date last_login_time) {
+        this.last_login_time = last_login_time;
+    }
 
-  public String getPwd() {
-    return pwd;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public void setPwd(String pwd) {
-    this.pwd = pwd;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public String getNickname() {
-    return nickname;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public void setNickname(String nickname) {
-    this.nickname = nickname;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public String getSign() {
-    return sign;
-  }
+    public String getPwd() {
+        return pwd;
+    }
 
-  public void setSign(String sign) {
-    this.sign = sign;
-  }
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
 
-  public String getFace() {
-    return face;
-  }
+    public String getNickname() {
+        return nickname;
+    }
 
-  public void setFace(String face) {
-    this.face = face;
-  }
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
-  public int getCoin() {
-    return coin;
-  }
+    public String getSign() {
+        return sign;
+    }
 
-  public void setCoin(int coin) {
-    this.coin = coin;
-  }
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
 
-  public int getSex() {
-    return sex;
-  }
+    public String getFace() {
+        return face;
+    }
 
-  public void setSex(int sex) {
-    this.sex = sex;
-  }
+    public void setFace(String face) {
+        this.face = face;
+    }
 
-  public int getCur_area() {
-    return cur_area;
-  }
+    public int getCoin() {
+        return coin;
+    }
 
-  public void setCur_area(int cur_area) {
-    this.cur_area = cur_area;
-  }
+    public void setCoin(int coin) {
+        this.coin = coin;
+    }
 
-  public int getEmail_validate() {
-    return email_validate;
-  }
+    public int getSex() {
+        return sex;
+    }
 
-  public void setEmail_validate(int email_validate) {
-    this.email_validate = email_validate;
-  }
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
 
-  public int getRole() {
-    return role;
-  }
+    public int getCur_area() {
+        return cur_area;
+    }
 
-  public void setRole(int role) {
-    this.role = role;
-  }
+    public void setCur_area(int cur_area) {
+        this.cur_area = cur_area;
+    }
 
-  public int getIs_del() {
-    return is_del;
-  }
+    public int getEmail_validate() {
+        return email_validate;
+    }
 
-  public void setIs_del(int is_del) {
-    this.is_del = is_del;
-  }
+    public void setEmail_validate(int email_validate) {
+        this.email_validate = email_validate;
+    }
 
-  public int getDaren_tree() {
-    return daren_tree;
-  }
+    public int getRole() {
+        return role;
+    }
 
-  public void setDaren_tree(int daren_tree) {
-    this.daren_tree = daren_tree;
-  }
+    public void setRole(int role) {
+        this.role = role;
+    }
 
-  public Timestamp getMtime() {
-    return mtime;
-  }
+    public int getIs_del() {
+        return is_del;
+    }
 
-  public void setMtime(Timestamp mtime) {
-    this.mtime = mtime;
-  }
+    public void setIs_del(int is_del) {
+        this.is_del = is_del;
+    }
+
+    public int getDaren_tree() {
+        return daren_tree;
+    }
+
+    public void setDaren_tree(int daren_tree) {
+        this.daren_tree = daren_tree;
+    }
+
+    public Timestamp getMtime() {
+        return mtime;
+    }
+
+    public void setMtime(Timestamp mtime) {
+        this.mtime = mtime;
+    }
+
+    public Timestamp getModified() {
+        return modified;
+    }
+
+    public void setModified(Timestamp modified) {
+        this.modified = modified;
+    }
 }

@@ -1,0 +1,11 @@
+.tm-article-subtitle{
+    border-left: 3px solid #836FFF;
+    padding:10px;
+}
+.tm-aticle-list{
+    border-top: 1px solid #ddd;
+    padding-top:15px;
+}
+.tm-aticle-list .uk-article{
+    padding:15px 0;
+}
