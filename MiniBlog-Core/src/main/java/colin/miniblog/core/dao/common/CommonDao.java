@@ -1,7 +1,9 @@
 package colin.miniblog.core.dao.common;
 
+import org.beetl.sql.core.SQLManager;
+import org.beetl.sql.ext.spring.SpringBeetlSql;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * 创建人 LinQiang
@@ -9,9 +11,14 @@ import org.springframework.stereotype.Repository;
  * 项目名称 MiniBlog
  * 当前包名 colin.miniblog.core.dao
  */
-@Repository
+
 public class CommonDao {
 
   @Autowired
-  private
+  @Qualifier("sqlManager")
+  private SpringBeetlSql springBeetlSql;
+
+  public SQLManager getSqlManager() {
+    return springBeetlSql.getSQLMananger();
+  }
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MiniBlog-Web:war">
+    <output-path>$PROJECT_DIR$/MiniBlog-Web/target</output-path>
+    <root id="archive" name="blog-webapps-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="MiniBlog-Web:war exploded" />
+    </root>
+  </artifact>
+</component>
