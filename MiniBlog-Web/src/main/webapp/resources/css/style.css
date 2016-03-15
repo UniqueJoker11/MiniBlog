@@ -9,3 +9,8 @@
 .tm-aticle-list .uk-article{
     padding:15px 0;
 }
+.tm-modal-header{
+    background: #333;
+    color: #fff;
+    font-size:1.3em;
+}

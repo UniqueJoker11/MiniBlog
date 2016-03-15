@@ -1,4 +1,4 @@
-package colin.miniblog.core.utils;
+package colin.miniblog.utils;
 
 import java.sql.Date;
 import java.sql.Timestamp;

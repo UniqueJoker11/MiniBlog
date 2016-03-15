@@ -1,7 +1,12 @@
 package colin.miniblog.controller.dashboard;
 
+import colin.miniblog.core.model.CommonResultMap;
+import colin.miniblog.core.pojo.UserInfo;
+import colin.miniblog.service.inter.IUserservice;
+import colin.miniblog.utils.ColinCollectionsUtils;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +24,12 @@ import java.util.Map;
 @Scope("request")
 @RequestMapping("miniblog")
 public class DashboardController {
+    @Autowired
+    private IUserservice userservice;
 
     /**
      * 首页显示
+     *
      * @param request
      * @return
      */
@@ -40,30 +48,55 @@ public class DashboardController {
      */
     @RequestMapping("user/register")
     @ResponseBody
-    public JSONPObject testData(String username, String password, String confirmPasswrod) {
-        Map<String, Object> map = new HashMap<>();
+    public Object userRegister(String username, String password, String confirmPasswrod, boolean isRemote) {
+        CommonResultMap<UserInfo> result = null;
         if (username == null || username.equals("")) {
-            map.put("isSuccess", false);
-            map.put("msg", "用户名不能为空！");
+            result = new CommonResultMap<>(false, "用户名不能为空！");
         } else {
             if (password == null || password.equals("")) {
-                map.put("isSuccess", false);
-                map.put("msg", "用户密码不能为空！");
+                result = new CommonResultMap<>(false, "用户密码不能为空！");
             } else {
                 if (confirmPasswrod == null || confirmPasswrod.equals("")) {
-                    map.put("isSuccess", false);
-                    map.put("msg", "确认密码不能为空！");
+                    result = new CommonResultMap<>(false, "确认密码不能为空！");
                 } else if (!password.equals(confirmPasswrod)) {
-                    map.put("isSuccess", false);
-                    map.put("msg", "两次密码输入不一致");
+                    result = new CommonResultMap<>(false, "两次密码输入不一致");
                 } else {
-                    map.put("isSuccess", true);
-                    map.put("msg", "恭喜你注册成功。你的用户名是" + username);
+                    result = userservice.userRegisterInfo(ColinCollectionsUtils.initParamsMap(new String[]{"username." + username, "pwd." + DigestUtils.md5(password)}));
                 }
             }
-
         }
-        return new JSONPObject("register", map);
+        if (isRemote) {
+            return new JSONPObject("register", result);
+        } else {
+            return result;
+        }
+    }
+
+    /**
+     * 用户登录
+     * @param username
+     * @param password
+     * @param isRemote
+     * @return
+     */
+    @RequestMapping(value = "user/login", method = RequestMethod.POST)
+    @ResponseBody
+    public Object userLogin(String username, String password, boolean isRemote) {
+        CommonResultMap<UserInfo> result = null;
+        if (username == null || username.equals("")) {
+            result = new CommonResultMap<>(false, "用户名不能为空！");
+        } else {
+            if (password == null || password.equals("")) {
+                result = new CommonResultMap<>(false, "用户密码不能为空！");
+            } else {
+                result = userservice.userLoginInfo(ColinCollectionsUtils.initParamsMap(new String[]{"username." + username, "pwd." + DigestUtils.md5(password)}));
+            }
+        }
+        if (isRemote) {
+            return new JSONPObject("login", result);
+        } else {
+            return result;
+        }
     }
 
 

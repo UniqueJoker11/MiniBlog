@@ -3,16 +3,14 @@ package colin.miniblog.service.impl;
 import colin.miniblog.core.dao.UserDao;
 import colin.miniblog.core.model.CommonResultMap;
 import colin.miniblog.core.pojo.UserInfo;
-import colin.miniblog.core.utils.ColinDateUtils;
 import colin.miniblog.service.inter.IUserservice;
+import colin.miniblog.utils.ColinDateUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resources;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +61,7 @@ public class UserService implements IUserservice{
         //设定最近一次登陆时间
         userInfo.setLast_login_time(ColinDateUtils.generateCurrentDate());
         //初始化密码
-        userInfo.setPwd(DigestUtils.md5Hex(userInfoMap.get("password").toString()));
+        userInfo.setPwd(DigestUtils.md5Hex(userInfoMap.get("pwd").toString()));
         //设定用户名
         userInfo.setUsername(userInfoMap.get("username").toString());
         //设定用户角色

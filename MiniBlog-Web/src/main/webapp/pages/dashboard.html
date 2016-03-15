@@ -81,6 +81,59 @@
         </div>
     </div>
 </div>
-
+<!--用户登录窗口-->
+<div id="userLoginDialog" class="uk-modal">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header tm-modal-header">用户登录</div>
+        <form class="uk-form">
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="user_name">用户名</label>
+                <div class="uk-form-controls uk-margin-small-top">
+                    <input type="text" id="login_user_name" class="uk-width-1-1  uk-form-large" placeholder="请输入用户名">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="user_psw">密码</label>
+                <div class="uk-form-controls uk-margin-small-top">
+                    <input type="password" id="login_user_psw" class="uk-width-1-1 uk-form-large" placeholder="请输入登录密码">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <div class="uk-form-controls">
+                    <input type="checkbox" id="remember_me"> <label for="remember_me">记住我</label><br>
+                </div>
+            </div>
+        </form>
+        <div class="uk-modal-footer uk-text-center"><button id="userLoginBtn" class="uk-button uk-button-primary">登录</button>&nbsp;<button class="uk-button uk-button-warning">取消</button></div>
+    </div>
+</div>
+<!--用户注册窗口-->
+<div id="userRegisterDialog" class="uk-modal">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header tm-modal-header">新用户注册</div>
+        <form class="uk-form">
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="register_user_name">用户名</label>
+                <div class="uk-form-controls uk-margin-small-top">
+                    <input type="text" id="register_user_name" class="uk-width-1-1  uk-form-large" placeholder="请输入用户名/邮箱">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="register_user_psw">密码</label>
+                <div class="uk-form-controls uk-margin-small-top">
+                    <input type="password" id="register_user_psw" class="uk-width-1-1 uk-form-large" placeholder="请输入登录密码">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label" for="register_user_confirmpsw">确认密码</label>
+                <div class="uk-form-controls uk-margin-small-top">
+                    <input type="password" id="register_user_confirmpsw" class="uk-width-1-1 uk-form-large" placeholder="请输入确认登录密码">
+                </div>
+            </div>
+        </form>
+        <div class="uk-modal-footer uk-text-center"><button id="userRegisterBtn" class="uk-button uk-button-primary">注册</button>&nbsp;<button class="uk-button uk-button-warning">取消</button></div>
+    </div>
+</div>
+<script type="text/javascript" src="${ctxPath}/js/miniblog.js"></script>
 </body>
 </html>
