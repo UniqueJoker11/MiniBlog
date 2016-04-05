@@ -10,11 +10,17 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>blog-core</artifactId>
     <packaging>jar</packaging>
-    <name>系统dao实现和通用类</name>
+    <name>blog-core</name>
+    <description>dao实现和其工具方法</description>
     <dependencies>
         <dependency>
             <groupId>colin.web.blog</groupId>
             <artifactId>blog-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>colin.web.blog</groupId>
+            <artifactId>blog-utils</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

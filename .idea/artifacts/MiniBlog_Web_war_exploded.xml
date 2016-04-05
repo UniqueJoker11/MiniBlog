@@ -16,6 +16,9 @@
           <element id="archive" name="blog-model-1.0-SNAPSHOT.jar">
             <element id="module-output" name="MiniBlog-Model" />
           </element>
+          <element id="archive" name="blog-utils-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="MiniBlog-Utils" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.1.RELEASE" />
@@ -70,6 +73,7 @@
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.15" />
           <element id="library" level="project" name="Maven: com.ibeetl:beetlsql:2.1" />
           <element id="library" level="project" name="Maven: org.json:json:20151123" />
+          <element id="library" level="project" name="Maven: com.rabbitmq:amqp-client:3.6.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

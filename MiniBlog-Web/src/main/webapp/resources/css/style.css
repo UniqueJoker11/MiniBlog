@@ -1,0 +1,9 @@
+/**重寫uikit的樣式代碼**/
+#blogLeftNav>li>a{
+    padding:15px !important;
+}
+/**自定義樣式**/
+.blog-admin-title{
+    width:80px;
+    height: 80px;
+}

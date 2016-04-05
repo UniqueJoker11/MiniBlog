@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <%include("./common/common_header.html"){}%>
+    <title>用户注册</title>
+</head>
+<body>
+<nav class="uk-navbar">
+
+    <a class="uk-navbar-brand" href="#">Brand</a>
+
+    <ul class="uk-navbar-nav">
+        <li class="uk-parent uk-active" data-uk-dropdown="">
+            <a href=""><i class="uk-icon-home"></i> Level1</a>
+
+            <div class="uk-dropdown uk-dropdown-navbar">
+                <ul class="uk-nav uk-nav-navbar">
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Another item</a></li>
+                    <li class="uk-nav-header">Header</li>
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Another item</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="#">Separated item</a></li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+
+    <div class="uk-navbar-content">Some <a href="#">link</a>.</div>
+
+    <div class="uk-navbar-content uk-hidden-small">
+        <form class="uk-form uk-margin-remove uk-display-inline-block">
+            <input type="text" placeholder="Search">
+            <button class="uk-button uk-button-primary">Submit</button>
+        </form>
+    </div>
+
+    <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
+        <div class="uk-button-group">
+            <a class="uk-button uk-button-danger" href="#">Link</a>
+            <button class="uk-button uk-button-danger">Button</button>
+        </div>
+    </div>
+
+</nav>
+<div class="uk-grid">
+    <div class="uk-width-4-6 uk-container-center">
+            <form class="uk-form uk-form-stacked">
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="username">用戶名</label>
+
+                    <div class="uk-form-controls">
+                        <input type="text" class="uk-width-1-1" id="username" name="username" placeholder="用户名">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="password">密碼</label>
+
+                    <div class="uk-form-controls">
+                        <input type="password" class="uk-width-1-1" id="password" name="password"
+                               placeholder="密码">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <div class="uk-form-controls">
+                        <button type="button" id="submitBtn" class="uk-button uk-button-primary uk-width-1-1">注册
+                        </button>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#submitBtn").bind("click", function () {
+            var params = new Object();
+            params.username = $("#username").val();
+            params.password = $("#password").val();
+            $.post("./user/register", params, function (data,status) {
+                if (status == "success") {
+                    console.log(data);
+                    alert("注册成功");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <%include("./common/common_header.html"){}%>
+    <title>管理面板</title>
+</head>
+<body>
+<div class="uk-grid uk-grid-collapse">
+    <div class="uk-width-1-6">
+        <div class="uk-panel uk-panel-box">
+            <div class="uk-text-center">
+                <img class="blog-admin-title uk-border-circle" src="${ctxPath}/images/header.jpg" alt="">
+            </div>
+            <!--消息模塊-->
+            <div class="uk-grid uk-margin-large-top uk-margin-large-bottom">
+                <div class="uk-button-group uk-width-1-1 uk-text-center">
+                    <button class="uk-button uk-button-default"><i class="uk-icon-info-circle"></i>&nbsp;提醒
+                    </button>
+                    <button class="uk-button uk-button-default"><i class="uk-icon-envelope"></i>&nbsp;邮件
+                    </button>
+                    <button class="uk-button uk-button-default"><i class="uk-icon-commenting"></i>&nbsp;消息
+                    </button>
+                </div>
+            </div>
+            <hr/>
+            <!--左侧导航菜单-->
+            <ul id="blogLeftNav" class="uk-nav uk-nav-side uk-nav-parent-icon uk-margin-large-top" data-uk-nav="{multiple:true}">
+                <li class="uk-active"><a href="#"><i class="uk-icon-comments"></i>&nbsp;話題管理</a></li>
+                <li class="uk-parent">
+                    <a href="#"><i class="uk-icon-book"></i>&nbsp;博文管理</a>
+                    <ul class="uk-nav-sub">
+                        <li><a href="#">Sub item</a></li>
+                        <li><a href="#">Sub item</a>
+                            <ul>
+                                <li><a href="#">Sub item</a></li>
+                                <li><a href="#">Sub item</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="uk-parent">
+                    <a href="#"><i class="uk-icon-star"></i>&nbsp;精選管理</a>
+                    <ul class="uk-nav-sub">
+                        <li><a href="#">Sub item</a></li>
+                        <li><a href="#">Sub item</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#"><i class="uk-icon-star"></i>&nbsp;福利管理</a></li>
+                <li class="uk-parent">
+                    <a href="#"><i class="uk-icon-gear"></i>&nbsp;系統管理</a>
+                    <ul class="uk-nav-sub">
+                        <li><a href="#">菜單管理</a></li>
+                        <li><a href="#">系統配置</a>
+                            <ul>
+                                <li><a href="#">角色管理</a></li>
+                                <li><a href="#">權限管理</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">個人配置</a>
+                            <ul>
+                                <li><a href="#">修改密碼</a></li>
+                                <li><a href="#">修改信息</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="uk-nav-divider"></li>
+                <li><a href="#"><i class="uk-icon-rss"></i>&nbsp;網站訂閱</a></li>
+            </ul>
+        </div>
+
+
+    </div>
+    <div class="uk-width-5-6">
+        <!--头部导航系列-->
+        <nav class="uk-navbar">
+            <a href="#admin-left-mavbar" class="uk-navbar-toggle"></a>
+            <ul class="uk-navbar-nav">
+                <li class="uk-parent uk-active" data-uk-dropdown="">
+                    <a href=""><i class="uk-icon-home"></i> Level1</a>
+
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
+                <div class="uk-button-group">
+                    <a class="uk-button uk-button-danger" href="#">Link</a>
+                    <button class="uk-button uk-button-danger">Button</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -291,6 +291,12 @@
              <artifactId>lucene-sandbox</artifactId>
              <version>5.3.1</version>
          </dependency>-->
+        <!--消息发布-->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>3.6.1</version>
+        </dependency>
     </dependencies>
 
 </project>
