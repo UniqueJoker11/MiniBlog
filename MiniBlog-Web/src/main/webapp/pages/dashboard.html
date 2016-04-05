@@ -71,6 +71,9 @@
                 <li class="uk-nav-divider"></li>
                 <li><a href="#"><i class="uk-icon-rss"></i>&nbsp;網站訂閱</a></li>
             </ul>
+            <hr/>
+            <h3>今日日期</h3>
+            <input id="blogDate" type="text"data-uk-datepicker="{format:'YYYY-MM-DD'}"/>
         </div>
 
 
@@ -100,6 +103,14 @@
     </div>
 </div>
 
-
+<script>
+    $(function(){
+        initDateComponent();
+        function initDateComponent(){
+            //var datepicker=UIkit.datepicker("#blogDate",{format:'YYYY-MM-DD',pos:'bottom'});
+            $("#blogDate").trigger("focus");
+        }
+    });
+</script>
 </body>
 </html>
