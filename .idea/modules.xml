@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MiniBlog.iml" filepath="$PROJECT_DIR$/MiniBlog.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Core/MiniBlog-Core.iml" filepath="$PROJECT_DIR$/MiniBlog-Core/MiniBlog-Core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Model/MiniBlog-Model.iml" filepath="$PROJECT_DIR$/MiniBlog-Model/MiniBlog-Model.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Service/MiniBlog-Service.iml" filepath="$PROJECT_DIR$/MiniBlog-Service/MiniBlog-Service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Utils/MiniBlog-Utils.iml" filepath="$PROJECT_DIR$/MiniBlog-Utils/MiniBlog-Utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Web/MiniBlog-Web.iml" filepath="$PROJECT_DIR$/MiniBlog-Web/MiniBlog-Web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blog.iml" filepath="$PROJECT_DIR$/blog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Core/blog-core.iml" filepath="$PROJECT_DIR$/MiniBlog-Core/blog-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Model/blog-model.iml" filepath="$PROJECT_DIR$/MiniBlog-Model/blog-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Service/blog-service.iml" filepath="$PROJECT_DIR$/MiniBlog-Service/blog-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Utils/blog-utils.iml" filepath="$PROJECT_DIR$/MiniBlog-Utils/blog-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniBlog-Web/blog-webapps.iml" filepath="$PROJECT_DIR$/MiniBlog-Web/blog-webapps.iml" />
     </modules>
   </component>
 </project>
+

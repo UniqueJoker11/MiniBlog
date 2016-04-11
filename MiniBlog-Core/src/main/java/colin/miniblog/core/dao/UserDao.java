@@ -1,7 +1,6 @@
 package colin.miniblog.core.dao;
 
 import colin.miniblog.core.dao.common.CommonDao;
-import colin.miniblog.core.pojo.User;
 import org.beetl.sql.core.db.KeyHolder;
 import org.springframework.stereotype.Repository;
 

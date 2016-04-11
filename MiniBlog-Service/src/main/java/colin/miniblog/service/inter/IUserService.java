@@ -1,7 +1,5 @@
 package colin.miniblog.service.inter;
 
-import colin.miniblog.core.pojo.User;
-
 import java.util.Map;
 
 /**

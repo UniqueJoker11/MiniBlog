@@ -1,7 +1,6 @@
 package colin.miniblog.service.impl;
 
 import colin.miniblog.core.dao.UserDao;
-import colin.miniblog.core.pojo.User;
 import colin.miniblog.service.inter.IUserService;
 import colin.miniblog.utils.ColinDateUtils;
 import org.apache.commons.codec.digest.DigestUtils;

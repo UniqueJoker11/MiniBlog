@@ -22,21 +22,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="MiniBlog-Core" />
-        <module name="MiniBlog-Model" />
-        <module name="MiniBlog-Service" />
-        <module name="MiniBlog-Utils" />
-        <module name="MiniBlog-Web" />
+        <module name="blog-core" />
+        <module name="blog-model" />
+        <module name="blog-service" />
+        <module name="blog-utils" />
+        <module name="blog-webapps" />
         <module name="MiniBlog-Webapps" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="MiniBlog-Core" target="1.7" />
-      <module name="MiniBlog-Model" target="1.7" />
-      <module name="MiniBlog-Service" target="1.7" />
-      <module name="MiniBlog-Utils" target="1.7" />
-      <module name="MiniBlog-Web" target="1.7" />
-      <module name="MiniBlog-Webapps" target="1.7" />
+    <bytecodeTargetLevel target="1.6">
+      <module name="blog" target="1.6" />
+      <module name="blog-core" target="1.6" />
+      <module name="blog-model" target="1.6" />
+      <module name="blog-service" target="1.6" />
+      <module name="blog-utils" target="1.6" />
+      <module name="blog-webapps" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
+

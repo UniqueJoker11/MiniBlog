@@ -28,4 +28,8 @@
        <aop:config>
               <aop:advisor advice-ref="taAdvice" pointcut="within(colin.miniblog.service.*)"></aop:advisor>
        </aop:config>
+       <!--配置redis-->
+        <bean id="Jedis" class="redis.clients.jedis.Jedis">
+            <constructor-arg name="host" value="112.114.11.129"/>
+        </bean>
 </beans>
