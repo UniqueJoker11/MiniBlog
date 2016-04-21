@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <%include("./common/admin-header.html"){}%>
+    <script type="text/javascript" src="/js/sockjs-0.3.4.min.js"></script>
+    <script>
+        var chatRoom=null;
+        $(function () {
+            $("#chatModel").hide();
+            $("#nextBtn").on("click", function (data) {
+                if ($("#username").val() == "") {
+                    alert("请输入姓名");
+                } else {
+                    $("#chatInit").hide();
+                    $("#chatModel").fadeIn();
+                    initChatRoom();
+                }
+            });
+            $("#sendMsg").on("click",function(){
+                var params=new Object();
+                params.author=$("#username").val();
+                params.content=$("#chatContent").val();
+                chatRoom.send(JSON.stringify(params));
+            });
+            function initChatRoom(){
+                chatRoom=new WebSocket("ws://localhost:8080/websocket");
+                chatRoom.onopen = function () {
+                    alert('Info: 链接成功进入聊天室...');
+                };
+                chatRoom.onmessage = function (event) {
+                    log(event.data);
+                };
+                chatRoom.onclose = function (event) {
+                    if (chatRoom != null) {
+                        chatRoom.close();
+                        chatRoom = null;
+                    }
+                };
+            }
+            function log(data){
+                console.log(JSON.stringify(data));
+                var content= $.parseJSON(data);
+                var chatContent="<li><article class=\"uk-comment\"><header class=\"uk-comment-header\"><h4 class=\"uk-comment-title\">"+content.author+"</h4></header><div class=\"uk-comment-body\">"+content.content+"</div> </article></li>"
+                $("#chatList").append(chatContent)
+            }
+        });
+
+
+    </script>
+    <title>聊天室</title>
+</head>
+<body>
+<div id="chatInit" class="uk-grid">
+    <div class="uk-width-1-1">
+        <input type="text" name="username" id="username" class="uk-form-large" placeholder="请输入你的姓名">
+        <button id="nextBtn" type="button">下一步</button>
+    </div>
+</div>
+<div id="chatModel" class="uk-grid">
+    <div class="uk-width-1-1">
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">聊天室</h3>
+            <div class="uk-scrollable-text" style="max-height: 500px;">
+                <ul class="uk-comment-list" id="chatList">
+
+                    <li><article class="uk-comment">
+                        <header class="uk-comment-header">
+                            <h4 class="uk-comment-title">作者</h4>
+                        </header>
+                        <div class="uk-comment-body">内容</div>
+                    </article>
+                    </li>
+                </ul>
+            </div>
+            <div class="uk-form-horizontal">
+                <div class="uk-form-controls">
+                    <input type="text" id="chatContent" placeholder="输入聊天内容">
+                    <button id="sendMsg" class="uk-button">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

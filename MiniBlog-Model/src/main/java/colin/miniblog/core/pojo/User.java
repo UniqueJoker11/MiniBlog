@@ -12,8 +12,8 @@ import java.sql.Timestamp;
  * 项目名称 MiniBlog
  * 当前包名 colin.miniblog.core.pojo
  */
-@Table(name = "user_info")
-public class UserInfo {
+@Table(name = "user")
+public class User {
 
     @AutoID
     private int id;
