@@ -46,8 +46,16 @@ public class UserDao extends CommonDao {
      * @param userInfo
      * @return
      */
-    public int updateUserInfo(UserInfo userInfo) {
+    public int updateUserInfo(Map<String,Object> userInfo) {
         return super.getSqlManager().update("user.update", userInfo);
+    }
 
+    /**
+     * 删除对象通过id
+     * @param id
+     * @return
+     */
+    public int delUser(int id){
+       return this.getSqlManager().deleteById(UserInfo.class,id);
     }
 }

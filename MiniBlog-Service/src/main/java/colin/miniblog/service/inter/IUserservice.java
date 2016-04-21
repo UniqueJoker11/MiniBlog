@@ -1,53 +1,43 @@
 package colin.miniblog.service.inter;
 
-import colin.miniblog.core.model.CommonResultMap;
 import colin.miniblog.core.pojo.UserInfo;
 
-import java.util.List;
 import java.util.Map;
 
 /**
- * Created by joker on 16-3-12.
+ * 创建人 LinQiang
+ * 创建日期 2016/3/14
+ * 项目名称 MiniBlog
+ * 当前包名 colin.miniblog.service.impl
  */
-public interface IUserservice {
-
+public interface IUserService {
     /**
-     * 注册用户的信息
-     * @param userInfoMap
-     */
-    public CommonResultMap<UserInfo> userRegisterInfo(Map<String,Object> userInfoMap);
-
-    /**
-     * 用户登录信息
-     * @param userInfoMap
+     * 驗證用戶登錄
+     * @param username
+     * @param password
      * @return
      */
-    public CommonResultMap<UserInfo> userLoginInfo(Map<String,Object> userInfoMap);
+  public UserInfo userLoginService(String username,String password);
 
     /**
-     * 验证用户的登录信息是否正确
-     * @param userInfoMap
+     * 用戶註冊
+     * @param username
+     * @param password
      * @return
      */
-    public boolean validateUserLogin(Map<String,Object> userInfoMap);
-    /**
-     * 更新用户的信息
-     * @param userInfoMap
-     * @return
-     */
-    public CommonResultMap<UserInfo> userUpdateInfo(Map<String,Object> userInfoMap);
+  public UserInfo userRegisterService(String username,String password);
 
     /**
-     * 删除用户的信息
-     * @param userInfoMap
+     * 用戶信息更新
+     * @param userInfo
      * @return
      */
-    public CommonResultMap<UserInfo> userDeleteInfo(Map<String,Object> userInfoMap);
+  public boolean userUpdateService(Map<String,Object> userInfo);
 
     /**
-     * 查询用户列表
-     * @param userInfoMap
+     * 根據id刪除用戶
+     * @param id
      * @return
      */
-    public CommonResultMap<List<UserInfo>> userListInfo(Map<String,Object> userInfoMap);
+  public boolean userDeleteService(int id);
 }

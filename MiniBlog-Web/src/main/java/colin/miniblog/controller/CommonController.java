@@ -1,6 +1,6 @@
 package colin.miniblog.controller;
 
-import colin.miniblog.core.pojo.User;
+import colin.miniblog.core.pojo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -54,7 +54,7 @@ public class CommonController {
    *
    * @param user
    */
-  public void setUserInfo(User user) {
+  public void setUserInfo(UserInfo user) {
     request.getSession().setAttribute("user", user);
   }
 
@@ -63,9 +63,9 @@ public class CommonController {
    *
    * @return
    */
-  public User getUserInfo() {
+  public UserInfo getUserInfo() {
     if (request.getSession().getAttribute("user")!=null){
-      return (User)request.getSession().getAttribute("user");
+      return (UserInfo)request.getSession().getAttribute("user");
     }else{
       return null;
     }

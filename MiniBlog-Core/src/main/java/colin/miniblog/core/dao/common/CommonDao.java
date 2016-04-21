@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
  * Created by joker on 16-3-12.
  */
 public class CommonDao {
+
     @Autowired
     @Qualifier(value = "sqlManager")
     private SpringBeetlSql beetlSqlsql;
@@ -16,4 +17,5 @@ public class CommonDao {
     public SQLManager getSqlManager() {
         return beetlSqlsql.getSQLMananger();
     }
+
 }
