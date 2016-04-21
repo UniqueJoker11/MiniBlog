@@ -25,6 +25,12 @@ public interface IUserservice {
     public CommonResultMap<UserInfo> userLoginInfo(Map<String,Object> userInfoMap);
 
     /**
+     * 验证用户的登录信息是否正确
+     * @param userInfoMap
+     * @return
+     */
+    public boolean validateUserLogin(Map<String,Object> userInfoMap);
+    /**
      * 更新用户的信息
      * @param userInfoMap
      * @return

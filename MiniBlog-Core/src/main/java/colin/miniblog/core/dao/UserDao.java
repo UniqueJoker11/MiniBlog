@@ -37,7 +37,7 @@ public class UserDao extends CommonDao {
      * @return
      */
     public List<UserInfo> validateUserInfo(Map<String, Object> userInfoMap) {
-        return super.getSqlManager().select("user.validateUser", UserInfo.class, userInfoMap);
+        return super.getSqlManager().select("user.validate", UserInfo.class, userInfoMap);
     }
 
     /**
@@ -47,7 +47,7 @@ public class UserDao extends CommonDao {
      * @return
      */
     public int updateUserInfo(UserInfo userInfo) {
-        return super.getSqlManager().update("user.updateUser", userInfo);
+        return super.getSqlManager().update("user.update", userInfo);
 
     }
 }

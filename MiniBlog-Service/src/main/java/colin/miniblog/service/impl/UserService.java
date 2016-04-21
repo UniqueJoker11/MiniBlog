@@ -76,8 +76,28 @@ public class UserService implements IUserservice{
      */
     @Override
     public CommonResultMap<UserInfo> userLoginInfo(Map<String, Object> userInfoMap) {
+        List<UserInfo> userInfos=userDao.validateUserInfo(userInfoMap);
+        if(userInfos!=null&&!userInfos.isEmpty()){
+            return new CommonResultMap<UserInfo>(true,userInfos.get(0));
+        }else {
+            return new CommonResultMap<UserInfo>(false,"用户信息不正确");
+        }
+    }
 
-        return null;
+    /**
+     * 验证用户的登录信息是否正确
+     *
+     * @param userInfoMap
+     * @return
+     */
+    @Override
+    public boolean validateUserLogin(Map<String, Object> userInfoMap) {
+        List<UserInfo> userInfos=userDao.validateUserInfo(userInfoMap);
+        if(userInfos!=null&&!userInfos.isEmpty()){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     /**

@@ -1,10 +1,10 @@
 package colin.miniblog.controller.dashboard;
 
+import colin.miniblog.controller.RequesResponseController;
 import colin.miniblog.core.model.CommonResultMap;
 import colin.miniblog.core.pojo.UserInfo;
 import colin.miniblog.service.inter.IUserservice;
 import colin.miniblog.utils.ColinCollectionsUtils;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by joker on 16-3-10.
@@ -23,7 +21,7 @@ import java.util.Map;
 @Controller
 @Scope("request")
 @RequestMapping("miniblog")
-public class DashboardController {
+public class DashboardController extends RequesResponseController{
     @Autowired
     private IUserservice userservice;
 
@@ -35,7 +33,26 @@ public class DashboardController {
      */
     @RequestMapping(value = "dashboard", method = RequestMethod.GET)
     public String showDashboardHtml(HttpServletRequest request) {
+        //抓取最新的发布内容
         return "dashboard";
+    }
+
+    /**
+     * 用户登录页面显示
+     * @return
+     */
+    @RequestMapping(value = "login",method = RequestMethod.GET)
+    public String showUserLoginHtml(){
+        return "user_login";
+    }
+
+    /**
+     * 用户注册页面显示
+     * @return
+     */
+    @RequestMapping(value = "register",method = RequestMethod.GET)
+    public String showUserRegisterHtml(){
+        return "user_register";
     }
 
     /**
@@ -47,8 +64,7 @@ public class DashboardController {
      * @return
      */
     @RequestMapping("user/register")
-    @ResponseBody
-    public Object userRegister(String username, String password, String confirmPasswrod, boolean isRemote) {
+    public String userRegister(String username, String password, String confirmPasswrod) {
         CommonResultMap<UserInfo> result = null;
         if (username == null || username.equals("")) {
             result = new CommonResultMap<>(false, "用户名不能为空！");
@@ -65,23 +81,28 @@ public class DashboardController {
                 }
             }
         }
-        if (isRemote) {
-            return new JSONPObject("register", result);
-        } else {
-            return result;
-        }
+        //返回个人用户中心，显示用户的基本信息和他自己发布的内容
+        return "user_center";
     }
+    @RequestMapping(value = "user/validate",method = RequestMethod.POST)
+    @ResponseBody
+    public Object validateUserinfo(String username,String password){
 
+         Boolean result= userservice.validateUserLogin(ColinCollectionsUtils.initParamsMap(new String[]{"username."+username,"pwd."+DigestUtils.md5(password)}));
+         if (result){
+             return new CommonResultMap<>(true,"用户名密码正确");
+         }else {
+             return new CommonResultMap<>(false,"用户名密码错误");
+         }
+    }
     /**
      * 用户登录
      * @param username
      * @param password
-     * @param isRemote
      * @return
      */
     @RequestMapping(value = "user/login", method = RequestMethod.POST)
-    @ResponseBody
-    public Object userLogin(String username, String password, boolean isRemote) {
+    public String userLogin(String username, String password) {
         CommonResultMap<UserInfo> result = null;
         if (username == null || username.equals("")) {
             result = new CommonResultMap<>(false, "用户名不能为空！");
@@ -92,11 +113,14 @@ public class DashboardController {
                 result = userservice.userLoginInfo(ColinCollectionsUtils.initParamsMap(new String[]{"username." + username, "pwd." + DigestUtils.md5(password)}));
             }
         }
-        if (isRemote) {
-            return new JSONPObject("login", result);
-        } else {
-            return result;
+        if(result.isSuccess()){
+            this.request.getSession().setAttribute("userinfo",(UserInfo)result.getT());
+            return "user_center";
+        }else{
+            this.request.setAttribute("result",result);
+            return "user_login";
         }
+
     }
 
 

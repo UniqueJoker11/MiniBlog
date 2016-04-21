@@ -1,11 +1,9 @@
-validateUser
+validate
 ===
-* 验证用户信息
 select * from user_info where 1=1 and username=#username# and pwd=#pwd#
 
-updateUser
+update
 ===
-* 更新用户信息
 update user set
 @if(!isEmpty(nickname)){
 nickname=#nickname#,
