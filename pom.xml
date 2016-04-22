@@ -271,11 +271,11 @@
             <version>20151123</version>
         </dependency>
         <!--redis-->
-        <dependency>
+    <!--    <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>2.7.3</version>
-        </dependency>
+        </dependency>-->
         <!--搜索查询组件-->
         <!-- <dependency>
              <groupId>org.apache.lucene</groupId>
@@ -298,11 +298,11 @@
              <version>5.3.1</version>
          </dependency>-->
         <!--消息发布-->
-        <dependency>
+       <!-- <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
             <version>3.6.1</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 </project>

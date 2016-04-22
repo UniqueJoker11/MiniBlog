@@ -73,7 +73,6 @@
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.15" />
           <element id="library" level="project" name="Maven: com.ibeetl:beetlsql:2.1" />
           <element id="library" level="project" name="Maven: org.json:json:20151123" />
-          <element id="library" level="project" name="Maven: com.rabbitmq:amqp-client:3.6.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
