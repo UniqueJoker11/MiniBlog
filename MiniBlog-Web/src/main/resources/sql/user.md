@@ -1,4 +1,19 @@
-validateLogin
+validate
 ===
-*驗證用戶登錄
-select * from user where username=#username# and pwd=#pwd#
+select * from user_info where 1=1 and username=#username# and pwd=#pwd#
+
+update
+===
+update user set
+@if(!isEmpty(nickname)){
+nickname=#nickname#,
+@}
+@if(!isEmpty(face)){
+face=#face#,
+@}
+@
+if(!isEmpty(sign){
+}){
+sign=#sign#
+}@
+where id=#id#;

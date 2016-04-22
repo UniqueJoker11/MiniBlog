@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--引入页面资源-->
+    <%include("./common/resources.html"){}%>
+    <title>用户注册</title>
+</head>
+<body>
+<!--头部导航-->
+<nav class="uk-navbar">
+    <a href="" class="uk-navbar-brand">BW&nbsp;|&nbsp;空间</a>
+</nav>
+<!-登录模块-->
+<div class="uk-grid uk-margin-large-top">
+    <div class="uk-width-3-5 uk-push-1-5">
+        <form id="userRegisterModel" class="uk-form" action="/miniblog/user/register" method="post">
+            <fieldset>
+                <legend>用户注册</legend>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="register_user_name">用户名</label>
+
+                    <div class="uk-form-controls uk-margin-small-top">
+                        <input type="text" id="register_user_name" class="uk-width-1-1  uk-form-large"
+                               placeholder="请输入用户名">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="register_user_psw">密码</label>
+
+                    <div class="uk-form-controls uk-margin-small-top">
+                        <input type="password" id="register_user_psw" class="uk-width-1-1 uk-form-large"
+                               placeholder="请输入登录密码">
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="register_user_confirmPsw">密码</label>
+
+                    <div class="uk-form-controls uk-margin-small-top">
+                        <input type="password" id="register_user_confirmPsw" class="uk-width-1-1 uk-form-large"
+                               placeholder="请输入登录密码">
+                    </div>
+                </div>
+
+                <div class="uk-form-row">
+                    <div class="uk-form-controls uk-text-center">
+                        <button id="userLoginBtn" type="submit"
+                                class="uk-button uk-button-primary uk-button-large uk-width-1-1">提交
+                        </button>
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <div class="uk-float-left">
+                        <a href="${ctxPath}/miniblog/help">
+                            注册遇到问题
+                        </a>
+                    </div>
+                    <div class="uk-float-right">
+                        <a href="${ctxPath}/miniblog/login">用户登录</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div class="tm-footer uk-position-bottom">
+    <div class="uk-container uk-container-center uk-text-center">
+
+        <ul class="uk-subnav uk-subnav-line uk-flex-center">
+            <li><a href="http://github.com/uikit/uikit">GitHub</a></li>
+            <li><a href="http://github.com/uikit/uikit/issues">Issues</a></li>
+            <li><a href="http://github.com/uikit/uikit/blob/master/CHANGELOG.md">Changelog</a></li>
+            <li><a href="https://twitter.com/getuikit">Twitter</a></li>
+        </ul>
+
+        <div class="uk-panel">
+            <p>Made by <a href="http://www.yootheme.com">YOOtheme</a> with love and caffeine.<br>Licensed under <a
+                    href="http://opensource.org/licenses/MIT">MIT license</a>.</p>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript" src="${ctxPath}/js/miniblog.js"></script>
+</body>
+</html>

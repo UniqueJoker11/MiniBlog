@@ -6,19 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
- * 创建人 LinQiang
- * 创建日期 2016/3/10
- * 项目名称 MiniBlog
- * 当前包名 colin.miniblog.core.dao
+ * Created by joker on 16-3-12.
  */
-
 public class CommonDao {
 
-  @Autowired
-  @Qualifier("sqlManager")
-  private SpringBeetlSql springBeetlSql;
+    @Autowired
+    @Qualifier(value = "sqlManager")
+    private SpringBeetlSql beetlSqlsql;
 
-  public SQLManager getSqlManager() {
-    return springBeetlSql.getSQLMananger();
-  }
+    public SQLManager getSqlManager() {
+        return beetlSqlsql.getSQLMananger();
+    }
+
 }

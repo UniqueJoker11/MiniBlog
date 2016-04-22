@@ -1,6 +1,6 @@
 package colin.miniblog.controller;
 
-import colin.miniblog.core.pojo.User;
+import colin.miniblog.core.pojo.UserInfo;
 import colin.miniblog.service.inter.IUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +47,7 @@ public class DashboardController extends CommonController{
    */
   @RequestMapping(value = "user/login",method = RequestMethod.POST)
   public String userLogin(String username,String password){
-    User user=userService.userLoginService(username,password);
+    UserInfo user=userService.userLoginService(username,password);
     if(user!=null){
       super.getHttpSession().setAttribute("user",user);
       return "dashboard";
@@ -65,7 +65,7 @@ public class DashboardController extends CommonController{
    */
   @RequestMapping(value = "user/register",method = RequestMethod.POST)
   public String userRegister(String username,String password){
-      User user=userService.userRegisterService(username,password);
+      UserInfo user=userService.userRegisterService(username,password);
     if(user!=null){
       return "admin_login";
     }else{

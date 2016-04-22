@@ -1,11 +1,15 @@
 package colin.miniblog.core.dao;
 
 import colin.miniblog.core.dao.common.CommonDao;
-import colin.miniblog.core.pojo.User;
-import org.beetl.sql.core.db.KeyHolder;
+import colin.miniblog.core.pojo.UserInfo;
+import org.beetl.sql.core.SQLManager;
+import org.beetl.sql.ext.spring.SpringBeetlSql;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 创建人 LinQiang
@@ -16,29 +20,42 @@ import java.util.List;
 @Repository
 public class UserDao extends CommonDao {
 
-  /**
-   * 註冊用戶信息
-   * @param user
-   * @return
-   */
-  public User insertUser(User user){
-    KeyHolder keyHolder=new KeyHolder();
-    super.getSqlManager().insert(User.class,user,keyHolder);
-    user.setId(keyHolder.getInt());
-    return user;
-  }
-
-  /**
-   * 根絕用戶名密碼驗證用戶登錄
-   * @param user
-   * @return
-   */
-  public User valdiateUser(User user){
-      List<User> userList=super.getSqlManager().select("user.validateLogin",User.class,user);
-    if(userList!=null&&!userList.isEmpty()){
-      return userList.get(0);
-    }else {
-      return null;
+    /**
+     * 保存用户对象
+     *
+     * @param userInfo
+     * @return
+     */
+    public int insertUser(UserInfo userInfo) {
+        return super.getSqlManager().insert(UserInfo.class, userInfo);
     }
-  }
+
+    /**
+     * 根据用户名和密码验证用户信息,返回用戶信息
+     *
+     * @param userInfoMap
+     * @return
+     */
+    public List<UserInfo> validateUserInfo(Map<String, Object> userInfoMap) {
+        return super.getSqlManager().select("user.validate", UserInfo.class, userInfoMap);
+    }
+
+    /**
+     * 更新用戶的信息
+     *
+     * @param userInfo
+     * @return
+     */
+    public int updateUserInfo(Map<String,Object> userInfo) {
+        return super.getSqlManager().update("user.update", userInfo);
+    }
+
+    /**
+     * 删除对象通过id
+     * @param id
+     * @return
+     */
+    public int delUser(int id){
+       return this.getSqlManager().deleteById(UserInfo.class,id);
+    }
 }

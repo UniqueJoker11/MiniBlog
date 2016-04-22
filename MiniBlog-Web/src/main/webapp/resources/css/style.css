@@ -1,9 +1,25 @@
-/**重寫uikit的樣式代碼**/
-#blogLeftNav>li>a{
-    padding:15px !important;
+.tm-article-subtitle{
+    border-left: 3px solid #836FFF;
+    padding:10px;
 }
-/**自定義樣式**/
-.blog-admin-title{
-    width:80px;
-    height: 80px;
+.tm-aticle-list{
+    border-top: 1px solid #ddd;
+    padding-top:15px;
+}
+.tm-aticle-list .uk-article{
+    padding:15px 0;
+}
+.tm-modal-header{
+    background: #333;
+    color: #fff;
+    font-size:1.3em;
+}
+.tm-footer{
+    color:#ddd !important;
+    background: #1C1C1C;
+    padding:50px 0;
+}
+.tm-login-panel h3{
+    border-left:2px solid #3D3D3D
+    padding-left:20px;
 }
