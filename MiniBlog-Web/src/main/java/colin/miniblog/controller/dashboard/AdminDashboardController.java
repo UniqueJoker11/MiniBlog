@@ -3,7 +3,7 @@ package colin.miniblog.controller.dashboard;
 import colin.miniblog.controller.RequesResponseController;
 import colin.miniblog.core.model.CommonResultMap;
 import colin.miniblog.core.pojo.UserInfo;
-import colin.miniblog.service.inter.IUserservice;
+import colin.miniblog.service.inter.IUserService;
 import colin.miniblog.utils.ColinCollectionsUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @Scope("request")
-@RequestMapping("miniblog")
-public class DashboardController extends RequesResponseController{
+@RequestMapping("mini/admin")
+public class AdminDashboardController extends RequesResponseController{
+
     @Autowired
-    private IUserservice userservice;
+    private IUserService userservice;
 
     /**
      * 首页显示
@@ -64,7 +65,8 @@ public class DashboardController extends RequesResponseController{
      * @return
      */
     @RequestMapping("user/register")
-    public String userRegister(String username, String password, String confirmPasswrod) {
+    @ResponseBody
+    public Object userRegister(String username, String password, String confirmPasswrod) {
         CommonResultMap<UserInfo> result = null;
         if (username == null || username.equals("")) {
             result = new CommonResultMap<>(false, "用户名不能为空！");
@@ -77,7 +79,8 @@ public class DashboardController extends RequesResponseController{
                 } else if (!password.equals(confirmPasswrod)) {
                     result = new CommonResultMap<>(false, "两次密码输入不一致");
                 } else {
-                    result = userservice.userRegisterInfo(ColinCollectionsUtils.initParamsMap(new String[]{"username." + username, "pwd." + DigestUtils.md5(password)}));
+                    UserInfo userInfo = userservice.userRegisterService(username, password);
+                    result=new CommonResultMap<UserInfo>(userInfo==null?false:true,userInfo==null?"用户注册失败":"");
                 }
             }
         }
@@ -87,8 +90,7 @@ public class DashboardController extends RequesResponseController{
     @RequestMapping(value = "user/validate",method = RequestMethod.POST)
     @ResponseBody
     public Object validateUserinfo(String username,String password){
-
-         Boolean result= userservice.validateUserLogin(ColinCollectionsUtils.initParamsMap(new String[]{"username."+username,"pwd."+DigestUtils.md5(password)}));
+         Boolean result= userservice.validateUserLogin(username,password);
          if (result){
              return new CommonResultMap<>(true,"用户名密码正确");
          }else {
@@ -110,7 +112,8 @@ public class DashboardController extends RequesResponseController{
             if (password == null || password.equals("")) {
                 result = new CommonResultMap<>(false, "用户密码不能为空！");
             } else {
-                result = userservice.userLoginInfo(ColinCollectionsUtils.initParamsMap(new String[]{"username." + username, "pwd." + DigestUtils.md5(password)}));
+                UserInfo userInfo = userservice.userLoginService(username, password);
+                result=new CommonResultMap<UserInfo>(userInfo==null?false:true,userInfo);
             }
         }
         if(result.isSuccess()){

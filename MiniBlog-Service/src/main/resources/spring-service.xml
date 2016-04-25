@@ -9,27 +9,40 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-       <!--扫描service类-->
-     <context:component-scan base-package="colin.miniblog"/>
-       <!--加入切面注解-->
-       <aop:aspectj-autoproxy/>
-       <!--引入数据源配置-->
-       <import resource="spring-datasource.xml"/>
-       <!--引入切面事务传播行文-->
-       <tx:advice id="taAdvice" transaction-manager="txManager">
-              <tx:attributes>
-                     <tx:method name="fetch*" propagation="REQUIRED" isolation="READ_COMMITTED"/>
-                     <tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT"/>
-                     <tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT"/>
-                     <tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT"/>
-              </tx:attributes>
-       </tx:advice>
-       <!--引入事务的切面事务范围-->
-       <aop:config>
-              <aop:advisor advice-ref="taAdvice" pointcut="within(colin.miniblog.service.*)"></aop:advisor>
-       </aop:config>
-       <!--配置redis-->
-        <bean id="Jedis" class="redis.clients.jedis.Jedis">
-            <constructor-arg name="host" value="112.114.11.129"/>
+
+    <!--扫描service类-->
+    <context:component-scan base-package="colin.miniblog"/>
+    <!--加入切面注解-->
+    <aop:aspectj-autoproxy/>
+    <!--引入数据源配置-->
+    <import resource="spring-datasource.xml"/>
+    <!--引入切面事务传播行文-->
+    <tx:advice id="taAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="fetch*" propagation="REQUIRED" isolation="READ_COMMITTED"/>
+            <tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT"/>
+            <tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT"/>
+            <tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--引入事务的切面事务范围-->
+    <aop:config>
+        <aop:advisor advice-ref="taAdvice" pointcut="within(colin.miniblog.service.*)"></aop:advisor>
+    </aop:config>
+    <!--配置redis-->
+    <!-- <bean id="Jedis" class="redis.clients.jedis.Jedis">
+         <constructor-arg name="host" value="112.114.11.129"/>
+     </bean>-->
+    <!--配置静态类-->
+    <!--    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+            <property name="locations">
+                <list>
+                    <value>classpath:constants/*.properties</value>
+                </list>
+            </property>
         </bean>
+        <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+            <property name="fileEncoding" value="UTF-8"></property>
+            <property name="properties" ref="configProperties"></property>
+        </bean>-->
 </beans>

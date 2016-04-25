@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * 当前包名 colin.miniblog.controller
  */
 @Controller
-@RequestMapping("mini/admin")
+@RequestMapping("mini/blog")
 public class DashboardController extends CommonController{
 
   @Resource

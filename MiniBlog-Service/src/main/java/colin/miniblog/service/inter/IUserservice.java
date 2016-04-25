@@ -40,4 +40,12 @@ public interface IUserService {
      * @return
      */
   public boolean userDeleteService(int id);
+
+  /**
+   * 验证用户的登录信息
+   * @param username
+   * @param password
+   * @return
+     */
+  public boolean validateUserLogin(String username,String password);
 }

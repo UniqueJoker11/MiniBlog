@@ -41,7 +41,6 @@ public class UserService implements IUserService {
         params.put("username",username);
         params.put("password",DigestUtils.md5Hex(password));
         List<UserInfo> userInfos= userDao.validateUserInfo(params);
-
         if (userInfos!=null&&userInfos.size()==1){
             return userInfos.get(0);
         }else {
@@ -149,16 +148,29 @@ public class UserService implements IUserService {
     }
 
     /**
+     * 验证用户的登录信息
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    @Override
+    public boolean validateUserLogin(String username, String password) {
+        if(!validateUserInfo(username,password)){
+            return false;
+        }
+
+        return false;
+    }
+
+    /**
      * 校验用户参数是否正确
      * @param username
      * @param password
      * @return
      */
     private boolean validateUserInfo(String username,String password){
-        if (username==null||username.trim().equals("")||password==null||password.trim().equals("")){
-            return false;
-        }else {
-            return true;
-        }
+       UserInfo userInfo=this.userLoginService(username,password);
+        return userInfo==null?false:true;
     }
 }
