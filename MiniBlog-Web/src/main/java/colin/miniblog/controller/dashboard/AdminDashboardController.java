@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.support.ServletContextResource;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * Created by joker on 16-3-10.
@@ -32,7 +29,7 @@ public class AdminDashboardController extends CommonController {
 
     private Logger logger= LoggerFactory.getLogger(AdminDashboardController.class);
 
-    private static final int MAX_LOGIN_FAILTURE_TIMES=3;
+    private static final int MAX_LOGIN_FAILTURE_TIMES=1;
     @Autowired
     private IUserService userservice;
 
@@ -128,10 +125,13 @@ public class AdminDashboardController extends CommonController {
                         Cage cage = new GCage();
                         OutputStream os=null;
                         try {
-                            ServletContextResource resource=new ServletContextResource(super.getHttpSession().getServletContext(), "/resources/validate/captcha.jpg");
-
-                            os= new FileOutputStream(resource.getFile(), false);
+                            File codeImage=new ServletContextResource(super.getHttpSession().getServletContext(), "/resources/validate/captcha.jpg").getFile();
+                            if(!codeImage.exists()){
+                                codeImage.createNewFile();
+                            }
+                            os= new FileOutputStream(codeImage, false);
                             String tokenKey=cage.getTokenGenerator().next();
+                            System.out.println(tokenKey);
                             super.getHttpSession().setAttribute("user"+super.getAccessIp()+"code",tokenKey);
                             cage.draw(tokenKey, os);
                         } catch (FileNotFoundException e) {
