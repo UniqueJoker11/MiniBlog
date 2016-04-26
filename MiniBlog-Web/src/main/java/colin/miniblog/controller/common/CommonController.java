@@ -1,4 +1,4 @@
-package colin.miniblog.controller;
+package colin.miniblog.controller.common;
 
 import colin.miniblog.core.pojo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +48,15 @@ public class CommonController {
   public void setResponse(HttpServletResponse response) {
     this.response = response;
   }
+
+  /**
+   * 返回用户访问IP
+   * @return
+     */
+  public  String getAccessIp(){
+    return this.request.getRemoteAddr();
+  }
+
 
   /**
    * 设定用户信息

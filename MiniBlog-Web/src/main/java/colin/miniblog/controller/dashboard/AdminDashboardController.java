@@ -1,19 +1,26 @@
 package colin.miniblog.controller.dashboard;
 
-import colin.miniblog.controller.RequesResponseController;
+import colin.miniblog.controller.common.CommonController;
 import colin.miniblog.core.model.CommonResultMap;
 import colin.miniblog.core.pojo.UserInfo;
 import colin.miniblog.service.inter.IUserService;
-import colin.miniblog.utils.ColinCollectionsUtils;
-import org.apache.commons.codec.digest.DigestUtils;
+import com.github.cage.Cage;
+import com.github.cage.GCage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.ServletContextResource;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Created by joker on 16-3-10.
@@ -21,8 +28,11 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @Scope("request")
 @RequestMapping("mini/admin")
-public class AdminDashboardController extends RequesResponseController{
+public class AdminDashboardController extends CommonController {
 
+    private Logger logger= LoggerFactory.getLogger(AdminDashboardController.class);
+
+    private static final int MAX_LOGIN_FAILTURE_TIMES=3;
     @Autowired
     private IUserService userservice;
 
@@ -65,8 +75,7 @@ public class AdminDashboardController extends RequesResponseController{
      * @return
      */
     @RequestMapping("user/register")
-    @ResponseBody
-    public Object userRegister(String username, String password, String confirmPasswrod) {
+    public Object userRegister(String username, String password, String confirmPasswrod) throws IOException {
         CommonResultMap<UserInfo> result = null;
         if (username == null || username.equals("")) {
             result = new CommonResultMap<>(false, "用户名不能为空！");
@@ -104,7 +113,7 @@ public class AdminDashboardController extends RequesResponseController{
      * @return
      */
     @RequestMapping(value = "user/login", method = RequestMethod.POST)
-    public String userLogin(String username, String password) {
+    public String userLogin(String username, String password) throws IOException {
         CommonResultMap<UserInfo> result = null;
         if (username == null || username.equals("")) {
             result = new CommonResultMap<>(false, "用户名不能为空！");
@@ -113,7 +122,34 @@ public class AdminDashboardController extends RequesResponseController{
                 result = new CommonResultMap<>(false, "用户密码不能为空！");
             } else {
                 UserInfo userInfo = userservice.userLoginService(username, password);
-                result=new CommonResultMap<UserInfo>(userInfo==null?false:true,userInfo);
+                if(userInfo==null){
+                    if(getLoginFailtureTimes("user"+super.getAccessIp())==this.MAX_LOGIN_FAILTURE_TIMES){
+                        //生成验证码
+                        Cage cage = new GCage();
+                        OutputStream os=null;
+                        try {
+                            ServletContextResource resource=new ServletContextResource(super.getHttpSession().getServletContext(), "/resources/validate/captcha.jpg");
+
+                            os= new FileOutputStream(resource.getFile(), false);
+                            String tokenKey=cage.getTokenGenerator().next();
+                            super.getHttpSession().setAttribute("user"+super.getAccessIp()+"code",tokenKey);
+                            cage.draw(tokenKey, os);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            os.close();
+                        }
+                        result=new CommonResultMap<UserInfo>(false,"登录错误次数达最大次数");
+                    }else{
+                        this.setLoginFailtureTimes("user"+super.getAccessIp(),getLoginFailtureTimes("user"+super.getAccessIp())+1);
+                        result=new CommonResultMap<UserInfo>(false,"用户名或密码错误");
+                    }
+
+                }else{
+                    result=new CommonResultMap<UserInfo>(true,"");
+                }
             }
         }
         if(result.isSuccess()){
@@ -124,6 +160,28 @@ public class AdminDashboardController extends RequesResponseController{
             return "user_login";
         }
 
+    }
+    /**
+     * 返回当前用户的错误登录次数
+     * @param keyName
+     * @return
+     */
+    private int getLoginFailtureTimes(String keyName){
+        Object failtureTimes=this.getHttpSession().getAttribute(keyName);
+        if(failtureTimes==null){
+            return 0;
+        }else{
+            return Integer.parseInt(failtureTimes.toString());
+        }
+    }
+
+    /**
+     * 设定当前用户的错误登录次数
+     * @param keyName
+     * @param times
+     */
+    private void setLoginFailtureTimes(String keyName,int times){
+        this.getHttpSession().setAttribute(keyName,times);
     }
 
 

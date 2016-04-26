@@ -1,4 +1,4 @@
-package colin.miniblog.controller;
+package colin.miniblog.controller.dashboard;
 
 /**
  * 创建人 LinQiang

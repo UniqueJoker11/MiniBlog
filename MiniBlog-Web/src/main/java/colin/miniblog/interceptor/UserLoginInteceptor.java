@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by joker on 16-3-17.
- * 处理用户当前有无登录，从session中获取用户的信息
+ * 处理用户当前登录次数过多
  */
-public class UserInteceptor implements HandlerInterceptor {
+public class UserLoginInteceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o) throws Exception {
         return false;

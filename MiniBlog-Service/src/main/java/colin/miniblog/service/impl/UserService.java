@@ -6,6 +6,8 @@ import colin.miniblog.service.inter.IUserService;
 import colin.miniblog.utils.ColinDateUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,14 +34,11 @@ public class UserService implements IUserService {
      * @return
      */
     @Override
+    @Cacheable(value = "customCache",key = "'login'+#username")
     public UserInfo userLoginService(String username, String password) {
-        //TODO 可以采用AOP的方法来写
-        if(!validateUserInfo(username,password)){
-            return null;
-        }
         Map<String,Object> params=new HashMap<String,Object>();
         params.put("username",username);
-        params.put("password",DigestUtils.md5Hex(password));
+        params.put("pwd",DigestUtils.md5Hex(password));
         List<UserInfo> userInfos= userDao.validateUserInfo(params);
         if (userInfos!=null&&userInfos.size()==1){
             return userInfos.get(0);
@@ -57,6 +56,7 @@ public class UserService implements IUserService {
      * @return
      */
     @Override
+    @CacheEvict(value = "customCache",allEntries = true)
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public UserInfo userRegisterService(String username, String password) {
         if(!validateUserInfo(username,password)){
@@ -111,6 +111,8 @@ public class UserService implements IUserService {
      * @return
      */
     @Override
+    @CacheEvict(key = "customCache",allEntries = true)
+    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public boolean userUpdateService(Map<String, Object> userInfo) {
         if (userInfo==null||userInfo.isEmpty()||userInfo.get("id")==null){
             return false;
@@ -132,6 +134,7 @@ public class UserService implements IUserService {
      * @return
      */
     @Override
+    @CacheEvict(key = "customCache",allEntries = true)
     public boolean userDeleteService(int id) {
         if (id<=0){
             return false;
@@ -159,7 +162,6 @@ public class UserService implements IUserService {
         if(!validateUserInfo(username,password)){
             return false;
         }
-
         return false;
     }
 

@@ -1,5 +1,6 @@
-package colin.miniblog.controller;
+package colin.miniblog.controller.usercenter;
 
+import colin.miniblog.controller.common.CommonController;
 import colin.miniblog.core.pojo.UserInfo;
 import colin.miniblog.service.inter.IUserService;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("mini/blog")
-public class DashboardController extends CommonController{
+public class DashboardController extends CommonController {
 
   @Resource
   private IUserService userService;

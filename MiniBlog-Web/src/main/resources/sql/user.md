@@ -1,4 +1,4 @@
-validate
+validateLogin
 ===
 select * from user_info where 1=1 and username=#username# and pwd=#pwd#
 

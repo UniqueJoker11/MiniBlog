@@ -18,5 +18,11 @@
             <artifactId>blog-service</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!--验证码-->
+        <dependency>
+            <groupId>com.github.cage</groupId>
+            <artifactId>cage</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>

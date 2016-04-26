@@ -1,4 +1,4 @@
-package colin.miniblog.controller;
+package colin.miniblog.controller.dashboard;
 
 /**
  * 加載系統菜單導航內容
