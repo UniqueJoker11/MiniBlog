@@ -131,7 +131,7 @@ public class AdminDashboardController extends CommonController {
                             }
                             os= new FileOutputStream(codeImage, false);
                             String tokenKey=cage.getTokenGenerator().next();
-                            System.out.println(tokenKey);
+                            System.out.println("当前的key是"+tokenKey+"---"+codeImage.getAbsolutePath());
                             super.getHttpSession().setAttribute("user"+super.getAccessIp()+"code",tokenKey);
                             cage.draw(tokenKey, os);
                         } catch (FileNotFoundException e) {

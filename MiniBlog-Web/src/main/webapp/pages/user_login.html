@@ -43,21 +43,22 @@
                                placeholder="请输入登录密码" name="password">
                     </div>
                 </div>
+                <%if(!isEmpty(result.msg)&&result.msg=="登录错误次数达最大次数"){%>
+                <div class="uk-form-row">
+                    <label class="uk-form-label" for="login_user_psw">验证码</label>
+                    <div class="uk-form-controls uk-margin-small-top">
+                        <input type="text" id="login_user_code" class="uk-width-1-3 uk-form-large"
+                               placeholder="请输入验证码" name="validateCode">
+                        <img alt="验证码" class="uk-border-rounded" style="height: 40px" ismap src="${ctxPath}/validate/captcha.jpg">
+                        <button id="captchaBtn" class="uk-button uk-button-link">看不清,下一张</button>
+                    </div>
+                </div>
+                <%}%>
                 <div class="uk-form-row">
                     <div class="uk-form-controls">
                         <input type="checkbox" id="remember_me"> <label for="remember_me">记住我</label><br>
                     </div>
                 </div>
-                <%if(!isEmpty(result.msg)&&result.msg=="登录错误次数达最大次数"){%>
-                <div class="uk-form-row">
-                    <label class="uk-form-label" for="login_user_psw">验证码</label>
-                    <div class="uk-form-controls uk-margin-small-top uk-grid">
-                        <input type="number" id="login_user_code" class="uk-width-1-2 uk-form-large"
-                               placeholder="请输入验证码" name="validateCode">
-                        <img class="" src="${ctxPath}/validate/captcha.jpg">
-                    </div>
-                </div>
-                <%}%>
                 <div class="uk-form-row">
                     <div class="uk-form-controls uk-text-center">
                         <button id="userLoginBtn" type="submit"
