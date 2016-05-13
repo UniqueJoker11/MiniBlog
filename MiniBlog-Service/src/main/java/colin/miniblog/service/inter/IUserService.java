@@ -1,6 +1,6 @@
 package colin.miniblog.service.inter;
 
-import colin.miniblog.core.pojo.User;
+import colin.miniblog.core.pojo.UserInfo;
 
 import java.util.Map;
 
@@ -12,13 +12,12 @@ import java.util.Map;
  */
 public interface IUserService {
     /**
-     *  驗證用戶登錄
+     * 驗證用戶登錄
      * @param username
      * @param password
      * @return
      */
-
-  public User userLoginService(String username,String password);
+  public UserInfo userLoginService(String username,String password);
 
     /**
      * 用戶註冊
@@ -26,19 +25,27 @@ public interface IUserService {
      * @param password
      * @return
      */
-  public User userRegisterService(String username,String password);
+  public UserInfo userRegisterService(String username,String password);
 
     /**
      * 用戶信息更新
      * @param userInfo
      * @return
      */
-  public int userUpdateService(Map<String,Object> userInfo);
+  public boolean userUpdateService(Map<String,Object> userInfo);
 
     /**
      * 根據id刪除用戶
      * @param id
      * @return
      */
-  public int userDeleteService(int id);
+  public boolean userDeleteService(int id);
+
+  /**
+   * 验证用户的登录信息
+   * @param username
+   * @param password
+   * @return
+     */
+  public boolean validateUserLogin(String username,String password);
 }

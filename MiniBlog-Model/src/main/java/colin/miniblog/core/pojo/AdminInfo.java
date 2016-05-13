@@ -1,12 +1,14 @@
 package colin.miniblog.core.pojo;
 
+import org.beetl.sql.core.annotatoin.AutoID;
 import org.beetl.sql.core.annotatoin.Table;
 
 /**
  * Created by joker on 16-4-21.
  */
-@Table(name = "admininfo")
+@Table(name = "admin_info")
 public class AdminInfo {
+    @AutoID
     private int id;
     private String adminname;
     private String adminpwd;

@@ -72,7 +72,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/MiniBlog-Web/target/blog-webapps-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="D:\OpenSources\MiniBlog\MiniBlog-Web\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="blog-webapps/web/Web" />
     </root>

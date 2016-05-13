@@ -1,5 +1,6 @@
-package colin.miniblog.core.dao;
+package test.colin.miniblog.core;
 
+import colin.miniblog.core.dao.UserDao;
 import colin.miniblog.core.pojo.UserInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,12 +37,12 @@ public class UserDaoTest {
 
     @Before
     public void initUser(){
-        params.put("username","colin");
+        params.put("username", "colin");
         params.put("pwd", DigestUtils.md5Hex("1234"));
         params.put("sign","我的签名");
         params.put("role",1);
         params.put("daren_tree","hello");
-        params.put("nickname","colin");
+        params.put("nickname", "colin");
         params.put("sex",0);
         params.put("email_validate",1);
         params.put("is_del",0);
