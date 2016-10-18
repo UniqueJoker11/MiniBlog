@@ -20,6 +20,7 @@
             <element id="module-output" name="blog-utils" />
           </element>
           <element id="library" level="project" name="Maven: com.github.cage:cage:1.0" />
+          <element id="library" level="project" name="Maven: com.github.cage:cage-parent:1.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.2.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.1.RELEASE" />

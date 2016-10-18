@@ -1,6 +1,9 @@
 package colin.miniblog.service.inter;
 
 import colin.miniblog.core.pojo.AdminInfo;
+import colin.miniblog.core.pojo.AdminMenu;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/5/13.
@@ -22,4 +25,10 @@ public interface IAdminDashboardService {
      * @return
      */
     public Boolean validateAdminIngoLogin(String username,String psw);
+
+    /**
+     * 获取管理后台菜单列表
+     * @return
+     */
+    public List<AdminMenu> listAllAdminMenus();
 }

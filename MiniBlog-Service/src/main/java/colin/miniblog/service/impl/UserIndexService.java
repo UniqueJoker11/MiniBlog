@@ -2,7 +2,7 @@ package colin.miniblog.service.impl;
 
 import colin.miniblog.core.dao.UserDao;
 import colin.miniblog.core.pojo.UserInfo;
-import colin.miniblog.service.inter.IUserService;
+import colin.miniblog.service.inter.IUserIndexService;
 import colin.miniblog.utils.ColinDateUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by joker on 16-3-12.
  */
 @Service
-public class UserService implements IUserService {
+public class UserIndexService implements IUserIndexService {
 
     @Autowired
     private UserDao userDao;
@@ -59,7 +58,7 @@ public class UserService implements IUserService {
     @CacheEvict(value = "customCache",allEntries = true)
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public UserInfo userRegisterService(String username, String password) {
-        if(!validateUserInfo(username,password)){
+        if(validateUserLogin(username,password)){
             return null;
         }
         //初始化用户的信息
@@ -159,20 +158,7 @@ public class UserService implements IUserService {
      */
     @Override
     public boolean validateUserLogin(String username, String password) {
-        if(!validateUserInfo(username,password)){
-            return false;
-        }
-        return false;
-    }
-
-    /**
-     * 校验用户参数是否正确
-     * @param username
-     * @param password
-     * @return
-     */
-    private boolean validateUserInfo(String username,String password){
-       UserInfo userInfo=this.userLoginService(username,password);
-        return userInfo==null?false:true;
+        UserInfo userInfo=this.userLoginService(username,password);
+        return userInfo!=null?true:false;
     }
 }

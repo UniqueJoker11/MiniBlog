@@ -1,8 +1,6 @@
 package test.colin.miniblog.service;
 
-import colin.miniblog.core.model.CommonResultMap;
-import colin.miniblog.core.pojo.UserInfo;
-import colin.miniblog.service.inter.IUserService;
+import colin.miniblog.service.inter.IUserIndexService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ import java.util.Map;
 public class UserServiceTest extends CommonSerciceTest{
 
     @Autowired
-    private IUserService userservice;
+    private IUserIndexService userservice;
 
     private Map<String,Object> userMap;
     @Before

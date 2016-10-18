@@ -5,7 +5,6 @@ import colin.miniblog.core.model.CommonResultMap;
 import colin.miniblog.core.pojo.AdminInfo;
 import colin.miniblog.core.pojo.UserInfo;
 import colin.miniblog.service.inter.IAdminDashboardService;
-import colin.miniblog.service.inter.IUserService;
 import com.github.cage.Cage;
 import com.github.cage.GCage;
 import org.apache.commons.lang3.ObjectUtils;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.support.ServletContextResource;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -41,23 +39,25 @@ public class AdminDashboardController extends CommonController {
     /**
      * 首页显示
      *
-     * @param request
      * @return
      */
     @RequestMapping(value = "dashboard", method = RequestMethod.GET)
-    public String showDashboardHtml(HttpServletRequest request) {
-        //抓取最新的发布内容
-        return "dashboard";
+    public String showDashboardHtml() {
+        if(super.getHttpSession().getAttribute("admininfo")!=null){
+            return "user_center";
+        }else{
+            return "redirect:/mini/admin/login";
+        }
     }
 
     /**
-     * 用户登录页面显示
+     * 管理员登录页面显示
      *
      * @return
      */
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String showUserLoginHtml() {
-        return "user_login";
+        return "admin_login";
     }
 
     /**
@@ -77,7 +77,8 @@ public class AdminDashboardController extends CommonController {
      * @param password
      * @return
      */
-    @RequestMapping(value = "user/login/isValid", method = RequestMethod.POST)
+    @RequestMapping(value = "" +
+            "user/login/isValid", method = RequestMethod.POST)
     @ResponseBody
     public Object userLoginValidate(String username, String password) throws IOException {
         CommonResultMap<UserInfo> result = null;
@@ -139,17 +140,17 @@ public class AdminDashboardController extends CommonController {
                     }
 
                 } else {
-                    this.request.getSession().setAttribute("userinfo", adminInfo);
-                    return "user_center";
+                    this.request.getSession().setAttribute("admininfo", adminInfo);
+                    return "redirect:/mini/admin/dashboard";
                 }
             }
         }
         if (result.isSuccess()) {
-            this.request.getSession().setAttribute("userinfo", (UserInfo) result.getT());
-            return "user_center";
+            this.request.getSession().setAttribute("admininfo", (UserInfo) result.getT());
+            return "redirect:/mini/admin/dashboard";
         } else {
             this.request.setAttribute("result", result);
-            return "user_login";
+            return "redirect:/mini/admin/login";
         }
 
     }
@@ -178,6 +179,4 @@ public class AdminDashboardController extends CommonController {
     private void setLoginFailtureTimes(String keyName, int times) {
         this.getHttpSession().setAttribute(keyName, times);
     }
-
-
 }

@@ -10,7 +10,7 @@ import java.util.Map;
  * 项目名称 MiniBlog
  * 当前包名 colin.miniblog.service.impl
  */
-public interface IUserService {
+public interface IUserIndexService {
     /**
      * 驗證用戶登錄
      * @param username

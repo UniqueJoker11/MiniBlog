@@ -23,6 +23,6 @@ public class IndexController extends CommonController {
    */
   @RequestMapping(value = "index", method = RequestMethod.GET)
   public String showBlogIndex() {
-    return "index";
+    return "/pages/user_index.html";
   }
 }
